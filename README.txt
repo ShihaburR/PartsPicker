@@ -1,5 +1,3 @@
-To enter the profile page and buildPC page
-
 HTML: All files in src -> main -> resources -> templates
 CSS: Files in src -> main -> resources -> static -> css
 JavaScript: Files in src -> main -> resources -> static -> js
