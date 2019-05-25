@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>PartsPicker • Register</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<header>
+    <!-- navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <!-- Insert Logo -->
+        <a class="navbar-brand" href="index.html" th:href="@{/}"> Parts Picker</a>
+
+        <!-- mobile button menu -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Menu items -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="budget.html" th:href="@{/buildPC}"> Build a PC </a></li>
+                <li class="nav-item"><a class="nav-link" href="accessories.html" th:href="@{/accessories}"> Accessories </a></li>
+                <li class="nav-item"><a class="nav-link" href="madePC.html" th:href="@{/madePC}"> Created PCs on PartsPicker </a></li>
+            </ul>
+            <!-- search form -->
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <!-- right side of navigation bar will be register and login menu items only -->
+            <ul class="navbar-nav mr auto navbar-right">
+                <li class="nav-item"><a class="nav-link" href="profile.html" th:href="@{/profile}">Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<body>
+    <!-- Register info -->
+    <div class="container">
+        <h2> Register to save your details </h2>
+        <p class="lead"><small class="text-muted"> Registration will allow you to keep many custom PCs you have or create on PartsPicker
+            and be able to purchase items without any hassle.</small></p>
+        <h3>User Information</h3>
+    </div>
+    <!--PCUser object linked -->
+    <form action="/register" method="post" th:object="${PCUser}">
+        <!-- Title Dropdown menu-->
+        <div class="container">
+            <div class="form-row form-group">
+                <label for="inputTitle">Title</label>
+                <select id="inputTitle" class="form-control" th:field="*{title}">
+                    <option selected value="Choose">Choose...</option>
+                    <option value="Mr">Mr</option>
+                    <option value="Mrs">Mrs</option>
+                    <option value="Ms">Ms</option>
+                    <option value="Miss">Miss</option>
+                </select>
+            </div>
+        </div>
+        <!--Name -->
+        <div class="form-group container">
+            <label for="inputName1">First Name:</label>
+            <input type="text" id="inputName1" class="form-control" pattern="[A-Za-z]*" th:field="*{firstName}" placeholder="First Name"
+                   title="Your first name must contain only letters.">
+        </div>
+        <div class="form-group container">
+            <label for="inputName2">Last Name:</label>
+            <input type="text" id="inputName2" pattern="[A-Za-z]*" class="form-control" th:field="*{lastName}" placeholder="Last Name"
+                   title="Your last name must contain only letters.">
+        </div>
+        <!-- Email & Password -->
+        <div class="form-group container">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" th:field="*{email}" placeholder="Email">
+        </div>
+        <div class="form-group container">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword" minlength="8" maxlength="26" th:field="*{password}"
+                   aria-describedby="passwordHelp" placeholder="Password" title="Your password must 8-26 characters long and contain a number">
+            <!-- small text for description -->
+            <small id="passwordHelp" class="form-text text-muted">Please enter a password between 8-26 characters (including a number)</small>
+            <!-- Checkbox calling a script to show hidden Password -->
+            <input type="checkbox" onclick="myFunction()">Show Password
+        </div>
+        <!-- responsive button -->
+        <div class="col-md-3 col-lg-2 container">
+            <input type="submit" class="btn btn-primary btn-block" value="Register"/>
+        </div>
+    </form>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("inputPassword");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+<footer>
+    <br>
+    <nav class="navbar navbar-light bg-dark">
+        <span class="navbar-brand mb-0 h1 text-muted">© Shihabur Rahman 2019 • Creator of PartsPicker </span>
+    </nav>
+</footer>
+</body>
+</html>
